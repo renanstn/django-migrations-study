@@ -7,15 +7,25 @@ Repositório utilizado para estudar migração de dados utilizando o Django
 
 ## Situação
 
-Aqui temos um app, onde inicialmente tínhamos uma model `Book`, onde nessa mesma model ficavam as seguintes informações:
+Aqui fiz um app, onde inicialmente eu tinha uma model `Book`, e nessa mesma model ficavam as seguintes informações sobre um livro:
 
 - Id
 - Título
 - Páginas
 - Autor
 
-Nessa situação fictícia, precisamos separar os **autores** em uma model separada.
+Nessa situação fictícia, vou separar os **autores** em uma model separada, e utilizarei as migrations do Django para isso.
 
 ## Passo a passo
 
-TODO
+Nessa simulação, iniciei o app salvando vários livros em uma model única, onde na mesma eu armazeno o Título do livro, quantidade de páginas, e o autor do mesmo.
+
+A model `Book` foi declarada assim:
+
+```py
+class Book(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    title = models.CharField(max_length=255)
+    pages = models.IntegerField()
+    author = models.CharField(max_length=255)
+```
