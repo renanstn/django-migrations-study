@@ -7,14 +7,14 @@ Repositório utilizado para estudar migração de dados utilizando o Django
 
 ## Situação
 
-Aqui fiz um app, onde inicialmente eu tinha uma model `Book`, e nessa mesma model ficavam as seguintes informações sobre um livro:
+Aqui fiz um app, onde inicialmente eu tinha uma model `Book`, e nessa mesma model ficavam as seguintes informações sobre livros:
 
 - Id
 - Título
 - Páginas
 - Autor
 
-Nessa situação fictícia, vou separar os **autores** em uma model separada, e utilizarei as migrations do Django para isso.
+Nessa situação fictícia, eu preciso separar os **autores** em uma model separada, e utilizarei as migrations do Django para isso.
 
 Ao final do processo, a model `Book` deve conter os campos:
 
@@ -30,9 +30,7 @@ E a model `Author` deve conter:
 
 ## Passo a passo
 
-Nessa simulação, iniciei o app salvando vários livros em uma model única, onde na mesma eu armazeno o Título do livro, quantidade de páginas, e o autor do mesmo.
-
-A model `Book` foi declarada assim:
+Nessa simulação, a model `Book` foi inicialmente declarada assim:
 
 ```py
 class Book(models.Model):
@@ -50,6 +48,8 @@ class Author(models.Model):
     name = models.CharField(max_length=255)
 ```
 
+- Aqui eu gerei uma migration
+
 Segundo passo, adicionar na model `Book`, o campo do tipo ForeignKey que fará o vínculo do livro com o autor. Importante manter inicialmente este campo com `default=None` e `null=True,`:
 
 ```py
@@ -66,6 +66,8 @@ class Book(models.Model):
         blank=True,
     )
 ```
+
+- Aqui eu gerei uma migration
 
 Agora o momento principal: Eu crio uma migration vazia, com o comando:
 
@@ -147,6 +149,12 @@ class Migration(migrations.Migration):
 
 TODO: Explicar melhor os métodos criados aqui.
 
-Com os dados migrados, eu removo o campo `author` da model `Book`, e gero uma migration somente com essa alteração
+- Aqui eu executei a migration criada acima
+
+Com os dados migrados, eu removo o campo `author` da model `Book`
+
+- Aqui eu gerei uma migration
 
 Por último, eu renomeio o field `author_foreign_key` para um nome mais descente, no caso, `author` mesmo.
+
+- Aqui eu gerei uma migration
