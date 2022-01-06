@@ -14,7 +14,6 @@ class Book(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     title = models.CharField(max_length=255)
     pages = models.IntegerField()
-    author = models.CharField(max_length=255)
     author_foreign_key = models.ForeignKey(
         Author,
         on_delete=models.CASCADE,

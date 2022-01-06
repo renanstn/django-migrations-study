@@ -147,3 +147,4 @@ class Migration(migrations.Migration):
 
 TODO: Explicar melhor os métodos criados aqui.
 
+Com os dados migrados, eu removo o campo `author` da model `Book`, e gero uma migration somente com essa alteração
