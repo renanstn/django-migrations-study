@@ -49,3 +49,20 @@ class Author(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     name = models.CharField(max_length=255)
 ```
+
+Segundo passo, adicionar na model `Book`, o campo do tipo ForeignKey que fará o vínculo do livro com o autor. Importante manter inicialmente este campo com `default=None` e `null=True,`:
+
+```py
+class Book(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    title = models.CharField(max_length=255)
+    pages = models.IntegerField()
+    author = models.CharField(max_length=255)
+    author_foreign_key = models.ForeignKey(
+        Author,
+        on_delete=models.CASCADE,
+        default=None,
+        null=True,
+        blank=True,
+    )
+```
