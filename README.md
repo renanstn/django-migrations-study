@@ -16,6 +16,18 @@ Aqui fiz um app, onde inicialmente eu tinha uma model `Book`, e nessa mesma mode
 
 Nessa situação fictícia, vou separar os **autores** em uma model separada, e utilizarei as migrations do Django para isso.
 
+Ao final do processo, a model `Book` deve conter os campos:
+
+- Id
+- Título
+- Páginas
+- Autor (ForeignKey)
+
+E a model `Author` deve conter:
+
+- Id
+- Nome
+
 ## Passo a passo
 
 Nessa simulação, iniciei o app salvando vários livros em uma model única, onde na mesma eu armazeno o Título do livro, quantidade de páginas, e o autor do mesmo.
@@ -28,4 +40,12 @@ class Book(models.Model):
     title = models.CharField(max_length=255)
     pages = models.IntegerField()
     author = models.CharField(max_length=255)
+```
+
+O primeiro passo, foi criar a model `Author`:
+
+```py
+class Author(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    name = models.CharField(max_length=255)
 ```
